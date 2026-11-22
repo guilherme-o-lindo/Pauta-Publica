@@ -1,0 +1,68 @@
+name: pauta-publica
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pauta_publica}
+      POSTGRES_USER: ${POSTGRES_USER:-pauta_publica}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no arquivo .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-pauta_publica}:${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no arquivo .env}@db:5432/${POSTGRES_DB:-pauta_publica}
+      PYTHONUNBUFFERED: "1"
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./backend/src:/app/src
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    restart: unless-stopped
+    environment:
+      VITE_API_URL: http://localhost:8000
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "127.0.0.1:5173:5173"
+    volumes:
+      - ./frontend:/workspace/frontend
+      - frontend_node_modules:/workspace/frontend/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  frontend_node_modules:

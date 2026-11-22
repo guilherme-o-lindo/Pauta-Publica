@@ -1,7 +1,8 @@
+
 [project]
 name = "backend"
 version = "0.1.0"
-description = "Add your description here"
+description = "API do Pauta Pública"
 readme = "README.md"
 authors = [
     { name = "Farmador de Aura de Infor 1", email = "guilherme.cordeiro.da.silva000@gmail.com" }
@@ -18,11 +19,14 @@ dependencies = [
 ]
 
 [project.scripts]
-backend = "backend:main"
+backend = "pauta_publica:main"
 
 [build-system]
 requires = ["uv_build>=0.13.7,<0.14.0"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "pauta_publica"
 
 [dependency-groups]
 dev = [
@@ -36,7 +40,7 @@ dev = [
 
 [tool.ruff]
 line-length = 100
-target-version = "py312"
+target-version = "py314"
 
 [tool.ruff.lint]
 select = [
@@ -57,7 +61,7 @@ indent-style = "space"
 [tool.pyright]
 include = ["src", "tests"]
 exclude = [".venv", "__pycache__"]
-pythonVersion = "3.12"
+pythonVersion = "3.14"
 typeCheckingMode = "standard"
 
 [tool.pytest.ini_options]

@@ -1,8 +1,8 @@
-﻿
+
 [project]
 name = "backend"
 version = "0.1.0"
-description = "API do Pauta P├║blica"
+description = "API do Pauta Pública"
 readme = "README.md"
 authors = [
     { name = "Farmador de Aura de Infor 1", email = "guilherme.cordeiro.da.silva000@gmail.com" }

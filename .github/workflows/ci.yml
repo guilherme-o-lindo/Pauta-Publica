@@ -1,0 +1,36 @@
+name: Frontend CI
+
+on:
+  push:
+    branches:
+      - frontend
+      - 'feature/frontend/**'
+  pull_request:
+    branches:
+      - frontend
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: Lint
+        run: pnpm exec eslint .
+      - name: Check formatting
+        run: pnpm exec prettier --check "src/**/*.{js,jsx,ts,tsx,vue}"
+      - name: Type-check and build
+        run: pnpm build
+      - name: Tests
+        run: pnpm exec vitest run --passWithNoTests

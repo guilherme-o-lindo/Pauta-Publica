@@ -10,12 +10,13 @@ export default {
     "pnpm --dir frontend exec prettier --write",
   ],
 
-  // Backend: Ruff
+  // Backend: Ruff + Pyright
   "backend/**/*.py": [
     "uv run --project backend ruff check --fix",
     "uv run --project backend ruff format",
+    () => "uv run --project backend pyright",
   ],
 
-  // Arquivos de configuração da raiz
+  // Configurações da raiz
   "*.{json,js,cjs,mjs,md,yaml,yml}": ["pnpm exec prettier --write"],
 };

@@ -1,0 +1,42 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - backend
+      - 'feature/backend/**'
+  pull_request:
+    branches:
+      - backend
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Install Python 3.14
+        run: uv python install 3.14
+      - name: Install locked dependencies
+        run: uv sync --locked
+      - name: Ruff lint
+        run: uv run ruff check .
+      - name: Ruff format
+        run: uv run ruff format --check .
+      - name: Pyright
+        run: uv run pyright
+      - name: Pytest (if tests exist)
+        shell: bash
+        run: |
+          if find . -path './.venv' -prune -o -type f -name 'test_*.py' -print -quit | grep -q .; then
+            uv run pytest
+          else
+            echo "No Python tests found yet; skipping pytest."
+          fi

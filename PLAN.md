@@ -1,7 +1,7 @@
 # PLAN — Arquitetura de Releases e Desenvolvimento
 
 > **Projeto:** Pauta Pública  
-> **Estado da arquitetura:** worktrees e branches isoladas configuradas; automação de sincronização criada, ainda não validada no Windows do projeto.  
+> **Estado da arquitetura:** worktrees e branches isoladas configuradas; sincronização inicial executada; CI aprovada e stack Docker iniciada localmente. Release v0.1.0 publicada com semantic-release (registro pós-publicação; usar somente após confirmar a tag e o GitHub Release).  
 > **Roadmap:** proposta inicial sujeita à definição do backlog, escopos e critérios de aceite.
 
 ## 1. Objetivo
@@ -118,7 +118,7 @@ git push origin develop
 
 Não há `git push` automático. Em caso de erro de aplicação ou de hooks, **conferir `git status` antes de repetir**. Nunca avançar manualmente `base/*` sem confirmar a integração.
 
-**Estado de validação:** scripts preparados, porém ainda não executados no repositório Windows do projeto. Realizar primeiro um teste controlado com uma alteração pequena e reversível em cada aplicação.
+**Estado de validação:** scripts executados com sucesso na integração inicial das estruturas de diretórios. Depois foram feitas edições equivalentes manualmente em `develop` e nas branches independentes; as referências `base/*` requerem reconciliação antes da próxima sincronização.
 
 ### Limites do fluxo
 
@@ -145,18 +145,26 @@ Para voltar à branch fixa, depois de concluir a feature, usar `git -C ../fronte
 
 ## 6. Roadmap de releases (proposto)
 
-### v0.1.0 — Fundação e fluxo de desenvolvimento
+### v0.1.0 — Fundação e fluxo de desenvolvimento (publicada)
 
 - [x] Separar árvores de frontend e backend em worktrees sem diretórios duplicados.
 - [x] Criar branches `frontend`, `backend`, `base/frontend` e `base/backend`.
 - [x] Preparar scripts PowerShell de sincronização por aplicação.
-- [ ] Versionar `PLAN.md` e scripts em `develop`.
-- [ ] Testar os scripts com alterações pequenas em ambas as aplicações.
-- [ ] Definir proteção de branches, convenção de commits e revisão de PRs.
-- [ ] Padronizar ambiente local, Docker, documentação e variáveis de ambiente.
-- [ ] Executar e documentar checks locais/CI por aplicação e no monorepo.
+- [x] Versionar `PLAN.md` e scripts em `develop`.
+- [x] Testar os scripts com integração inicial de 11 arquivos `.gitkeep` no frontend e 17 no backend.
+- [ ] Configurar proteção de branches e política de revisão de PRs (convenção de commits já utilizada).
+- [x] Preparar e iniciar a stack Docker Compose (Vue/Vite, FastAPI e PostgreSQL), arquivos de ambiente e documentação.
+- [x] Executar CI de frontend, backend e `develop`; todos aprovados conforme validação relatada.
 
-**Aceite:** onboarding reproduzível; integração das duas aplicações testada; lint, formato, tipagem e CI aprovados; script de sincronização executado com sucesso.
+**Evidências:** branches e worktrees configuradas; scripts de sincronização executados; GitHub Actions de frontend, backend e `develop` aprovados; Docker `hello-world` executado; PostgreSQL e backend saudáveis no Compose; frontend voltou a funcionar após reinstalação manual de dependências no volume.
+
+**Marco de release:** `v0.1.0`, criado pelo `semantic-release` a partir de `main`, com tag Git, changelog e GitHub Release gerados automaticamente. Confirmar os links e o commit SHA antes de registrar evidências definitivas.
+
+**Escopo entregue:** organização do monorepo e worktrees isoladas; scripts de sincronização inicial; CI de frontend/backend/develop; Docker Compose com PostgreSQL, FastAPI e Vue/Vite; health check básico.
+
+**Limitações conhecidas:** funcionalidades de negócio, OAuth, migrações de banco, testes de comportamento e deploy de produção permanecem fora desta versão. A correção durável de dependências do frontend e a reconciliação das referências `base/*` devem ser verificadas e documentadas; se não tiverem sido concluídas antes da tag, registrá-las como dívida técnica da versão.
+
+**Pós-publicação:** verificar `git tag -l v0.1.0`, o GitHub Release e o `CHANGELOG.md`; registrar o SHA exato da `main` e manter `develop` alinhada para próximas mudanças.
 
 ### v0.2.0 — Contrato e integração da API
 
@@ -194,15 +202,17 @@ Para voltar à branch fixa, depois de concluir a feature, usar `git -C ../fronte
 
 **Aceite:** MVP aprovado, deploy reprodutível e sem defeitos bloqueantes conhecidos.
 
-## 7. Processo de release
+## 7. Processo de release com semantic-release
+
+**Status em 22/11/2026:** `v0.1.0` **ainda não publicada**; não há branch `main` na listagem remota consultada. Não confundir branch preparatória com tag e GitHub Release. As dependências do frontend foram reparadas manualmente no volume Docker; automatizar essa recuperação antes de marcar a versão estável.
 
 1. Confirmar escopo, dependências e critérios de aceite no backlog.
 2. Sincronizar `frontend` e `backend` com `develop`.
 3. Rodar checks de integração do monorepo e congelar alterações de escopo.
-4. Criar `release/vX.Y.Z` a partir de `develop`.
+4. Quando necessário, criar `release/vX.Y.Z` a partir de `develop` para estabilização; no marco inicial pode-se promover o commit aprovado diretamente para `main`.
 5. Corrigir apenas problemas de estabilização e registrar as mudanças.
 6. Validar regressão, segurança, migrações e rollback.
-7. Fazer merge da release em `main` (quando existir), criar tag anotada `vX.Y.Z` e publicar o changelog.
+7. Integrar o commit aprovado em `main` e executar `semantic-release` nessa branch. O semantic-release calcula a versão a partir de Conventional Commits e publica tag, changelog e GitHub Release; não criar manualmente tags de versão finais.
 8. Retornar correções da release para `develop` **e reconciliá-las com as branches isoladas** afetadas antes de novas sincronizações.
 
 **Cuidado:** merges de `release/*` e `main` são feitos no histórico do **monorepo**. O retorno das correções às branches isoladas não é um merge comum: é necessário adaptar os caminhos ou usar um procedimento de sincronização inversa ainda a definir.
@@ -233,11 +243,40 @@ Para cada versão, registrar:
 - **Riscos e rollback:** condições de falha, reversão e responsáveis.
 - **Status:** planejada / em desenvolvimento / em estabilização / publicada.
 
-## 10. Próximas decisões
+## 10. Release v0.1.0 — registro pós-publicação
 
-- [ ] Confirmar o backlog e o escopo real do MVP.
-- [ ] Testar a integração com os dois scripts em um cenário controlado.
-- [ ] Definir uma estratégia de **sincronização inversa** segura para correções feitas em `develop`/`release`.
-- [ ] Definir o fluxo de PRs com as branches de raízes distintas e a publicação/recuperação das referências `base/*` no remoto.
-- [ ] Confirmar/criar `main` e proteger as branches apropriadas.
-- [ ] Definir ambientes de desenvolvimento, homologação e produção, checks obrigatórios e responsáveis pelos releases.
+> **Este documento é o registro pós-release. Somente o adote no repositório quando a execução do semantic-release tiver sido bem-sucedida e o GitHub Release `v0.1.0` estiver visível.**
+
+| Campo                 | Registro                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------ |
+| Versão                | `v0.1.0`                                                                             |
+| Status                | Publicada após confirmação do GitHub Release                                         |
+| Branch de publicação  | `main`                                                                               |
+| Ferramenta de release | `semantic-release`                                                                   |
+| Tag                   | `v0.1.0`                                                                             |
+| Link da release       | `https://github.com/guilherme-o-lindo/Pauta-Publica/releases/tag/v0.1.0` (verificar) |
+| Commit publicado      | Conferir `git rev-list -n 1 v0.1.0`                                                  |
+| Data de publicação    | Consultar a data exibida no GitHub Release                                           |
+| Tipo                  | Marco inicial de infraestrutura; sem deploy público                                  |
+
+### Notas do release
+
+- Monorepo central (`develop`) e áreas de trabalho frontend/backend independentes.
+- Scripts de sincronização e convenção de branches.
+- GitHub Actions para validação do código.
+- Dockerfiles e Compose para PostgreSQL 17, FastAPI e Vue/Vite.
+- Endpoint `/health` para a API.
+
+### Após a v0.1.0
+
+- [ ] Reconciliar referências `base/frontend` e `base/backend` sem descartes nem avanço indevido.
+- [ ] Confirmar que o frontend instala dependências automaticamente em volume Docker novo.
+- [ ] Definir uma estratégia de sincronização inversa da `develop` para as branches isoladas.
+- [ ] Proteger `main` e definir política de merge e liberação de token do CI.
+- [ ] Adicionar testes reais e critérios de cobertura para v0.2.0.
+- [ ] Planejar conexão real FastAPI–PostgreSQL, migrações Alembic e contrato de API.
+- [ ] Atualizar README com instalação limpa e procedimentos de recuperação.
+
+## 11. Próximas versões
+
+A `v0.2.0` prioriza contratos de API, integração entre frontend/backend e testes de integração. A `v0.3.0` aborda autenticação OAuth. A `v0.4.0` entrega a primeira funcionalidade vertical. A `v1.0.0` será o MVP estável, condicionado a escopo e critérios de aceite aprovados.

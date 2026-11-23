@@ -1,0 +1,67 @@
+version: 2
+
+updates:
+  # Monorepo: pnpm workspace (root + frontend/)
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "America/Fortaleza"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+
+  # Monorepo: Python / uv in backend/
+  - package-ecosystem: "uv"
+    directory: "/backend"
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "America/Fortaleza"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+
+  # CI workflows (monorepo)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "America/Fortaleza"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+
+  # Independent frontend branch (package.json is at root)
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "frontend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "America/Fortaleza"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+
+  # Independent backend branch (pyproject.toml is at root)
+  - package-ecosystem: "uv"
+    directory: "/"
+    target-branch: "backend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "America/Fortaleza"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"

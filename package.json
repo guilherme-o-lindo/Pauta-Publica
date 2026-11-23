@@ -12,7 +12,9 @@
     "open": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/open-workspaces.ps1",
     "dev": "docker compose up -d",
     "dev:logs": "docker compose logs -f",
-    "dev:stop": "docker compose stop"
+    "dev:stop": "docker compose stop",
+    "sync:frontend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-frontend.ps1",
+    "sync:backend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-backend.ps1"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",

@@ -14,7 +14,14 @@
     "dev:logs": "docker compose logs -f",
     "dev:stop": "docker compose stop",
     "sync:frontend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-frontend.ps1",
-    "sync:backend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-backend.ps1"
+    "sync:backend": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-backend.ps1",
+    "status": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 status",
+    "doctor": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 doctor",
+    "check": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 check",
+    "fix": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 fix",
+    "update": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 update",
+    "sync": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 sync",
+    "maintenance": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 maintenance"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",

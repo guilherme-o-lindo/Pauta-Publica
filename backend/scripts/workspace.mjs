@@ -1,3 +1,5 @@
+import process from 'node:process'
+import console from 'node:console'
 import { execFileSync, spawnSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'

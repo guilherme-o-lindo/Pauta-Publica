@@ -21,7 +21,8 @@
     "fix": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 fix",
     "update": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 update",
     "sync": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 sync",
-    "maintenance": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 maintenance"
+    "maintenance": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 maintenance",
+    "dev:all": "docker compose up -d"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",

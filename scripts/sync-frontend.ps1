@@ -39,7 +39,7 @@ try {
     if ($sourceBranch -ne $component) {
         throw "A worktree $sourceRoot deve estar na branch '$component' (atual: '$sourceBranch')."
     }
-    $sourceStatus = @(Invoke-Git -Arguments @('-C', $sourceRoot, 'status', '--porcelain', '--untracked-files=normal') | Where-Object { $_ })
+    $sourceStatus = @(Invoke-Git -Arguments @('-C', $sourceRoot, 'status', '--porcelain', '--untracked-files=no') | Where-Object { $_ })
     if ($sourceStatus.Count -gt 0) {
         throw "A worktree $component tem alteracoes nao commitadas. Faça commit antes: $($sourceStatus -join '; ')"
     }
@@ -55,7 +55,8 @@ try {
     # Impede aplicar um patch sobre uma copia modificada diretamente na develop.
     $baseTree = (Invoke-Git -Arguments @('-C', $repoRoot, 'rev-parse', "$baseRef^{tree}") | Select-Object -First 1).Trim()
     $integratedTree = (Invoke-Git -Arguments @('-C', $repoRoot, 'rev-parse', "HEAD:$component") | Select-Object -First 1).Trim()
-    if ($integratedTree -ne $baseTree) {
+    & git -C $repoRoot diff --quiet $integratedTree $baseTree -- . ':(exclude).github/workflows/**'
+    if ($LASTEXITCODE -ne 0) {
         throw "A pasta '$component/' na develop divergiu da ultima sincronizacao. Integre/reconcilie essas mudancas manualmente antes de continuar."
     }
 
@@ -65,7 +66,7 @@ try {
     }
 
     $patchPath = Join-Path ([IO.Path]::GetTempPath()) ("sync-$component-" + [guid]::NewGuid().ToString('N') + '.patch')
-    & git -C $repoRoot diff --binary --full-index --no-ext-diff "--output=$patchPath" $oldBase $target --
+    & git -C $repoRoot diff --binary --full-index --no-ext-diff "--output=$patchPath" $oldBase $target -- . ':(exclude).github/workflows/**'
     if ($LASTEXITCODE -ne 0) { throw 'Falha ao gerar patch Git.' }
 
     if ((Get-Item -LiteralPath $patchPath).Length -eq 0) {

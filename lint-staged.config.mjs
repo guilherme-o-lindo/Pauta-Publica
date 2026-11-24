@@ -18,5 +18,15 @@ export default {
   ],
 
   // Configurações da raiz
-  "*.{json,js,cjs,mjs,md,yaml,yml}": ["pnpm exec prettier --write"],
+  "*.{json,js,cjs,mjs,md,yaml,yml}": (files) => {
+    const filtered = files.filter(
+      (file) =>
+        !file.endsWith("pnpm-lock.yaml") &&
+        !/[\\/]scripts[\\/]workspace\.mjs$/.test(file),
+    );
+    return filtered.length
+      ? "pnpm exec prettier --write " +
+          filtered.map((file) => JSON.stringify(file)).join(" ")
+      : [];
+  },
 };

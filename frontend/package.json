@@ -6,7 +6,28 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "commitlint": "node scripts/workspace.mjs commitlint",
+    "release": "node scripts/workspace.mjs release",
+    "release:dry": "node scripts/workspace.mjs release:dry",
+    "dev:frontend": "node scripts/workspace.mjs dev:frontend",
+    "build:frontend": "node scripts/workspace.mjs build:frontend",
+    "test:frontend": "node scripts/workspace.mjs test:frontend",
+    "open": "node scripts/workspace.mjs open",
+    "dev:logs": "node scripts/workspace.mjs dev:logs",
+    "dev:stop": "node scripts/workspace.mjs dev:stop",
+    "sync:frontend": "node scripts/workspace.mjs sync:frontend",
+    "sync:backend": "node scripts/workspace.mjs sync:backend",
+    "status": "node scripts/workspace.mjs status",
+    "doctor": "node scripts/workspace.mjs doctor",
+    "check": "node scripts/workspace.mjs check",
+    "fix": "node scripts/workspace.mjs fix",
+    "update": "node scripts/workspace.mjs update",
+    "sync": "node scripts/workspace.mjs sync",
+    "maintenance": "node scripts/workspace.mjs maintenance",
+    "dev:all": "node scripts/workspace.mjs dev:all",
+    "prepare:root": "node scripts/workspace.mjs prepare",
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "vue": "^3.5.44"

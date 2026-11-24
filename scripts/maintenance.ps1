@@ -26,6 +26,7 @@ function Doctor {
  }
 }
 function Check {
+ Run node @('--test','scripts/sync-message.test.mjs')
  Run pnpm @('--dir','frontend','exec','eslint','.')
  Run pnpm @('--dir','frontend','exec','prettier','--check','src/**/*.{js,jsx,ts,tsx,vue}')
  Run pnpm @('--dir','frontend','build')

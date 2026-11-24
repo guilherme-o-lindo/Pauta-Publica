@@ -874,3 +874,18 @@ Até que uma licença seja explicitamente adicionada ao repositório, a disponib
 **Pauta Pública — Política simples. Informação para todos.**
 
 _Um projeto de tecnologia cívica, aprendizado Full Stack e democratização do acesso à informação política brasileira._
+
+### Sincronizacao e versionamento
+
+Execute os commits nas worktrees isoladas usando Conventional Commits e depois rode
+pnpm sync (ou pnpm sync:frontend / pnpm sync:backend). A integracao usa o mesmo
+commit-analyzer do semantic-release para classificar os commits desde base/frontend
+ou base/backend. A mensagem registra os hashes e assuntos originais.
+
+- feat: minor; fix e perf: patch; BREAKING CHANGE ou !: major.
+- docs, refactor, style, test, build, ci e chore: sem release por padrao.
+- Em um lote, prevalece o maior impacto; workflows exclusivos nao sao integrados.
+- Sem diferenca de conteudo, nao e criado um commit de integracao.
+
+A integracao nao publica releases. A publicacao continua restrita a main.
+Para testar a classificacao, execute pnpm test:sync na raiz.

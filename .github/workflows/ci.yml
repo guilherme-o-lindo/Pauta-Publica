@@ -44,6 +44,9 @@ jobs:
       - name: Install dependencies from monorepo lockfile
         run: pnpm install --frozen-lockfile
         working-directory: .
+      - name: Test synchronization classification
+        run: pnpm run test:sync
+        working-directory: .
       - name: Lint
         run: pnpm exec eslint .
       - name: Check formatting

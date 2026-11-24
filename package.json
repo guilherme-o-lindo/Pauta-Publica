@@ -22,7 +22,8 @@
     "update": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 update",
     "sync": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 sync",
     "maintenance": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/maintenance.ps1 maintenance",
-    "dev:all": "docker compose up -d"
+    "dev:all": "docker compose up -d",
+    "test:sync": "node --test scripts/sync-message.test.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",

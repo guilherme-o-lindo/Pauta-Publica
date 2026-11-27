@@ -1,36 +1,9 @@
 <script setup lang="ts">
+import Badge from "./Badge.vue";
 withDefaults(defineProps<{ tone?: "neutral" | "info" | "success" | "warning" | "error" }>(), {
   tone: "neutral",
 });
 </script>
 <template>
-  <span class="badge" :data-tone="tone"><slot /></span>
+  <Badge :variant="tone === 'neutral' ? 'secondary' : tone"><slot /></Badge>
 </template>
-<style scoped>
-.badge {
-  display: inline-block;
-  width: fit-content;
-  padding: var(--space-1) var(--space-2);
-  background: var(--muted);
-  color: var(--foreground);
-  border-radius: var(--badge-radius);
-  font-size: var(--type-caption);
-  font-weight: var(--weight-bold);
-}
-.badge[data-tone="info"] {
-  background: var(--info-bg);
-  color: var(--info-fg);
-}
-.badge[data-tone="success"] {
-  background: var(--success-bg);
-  color: var(--success-fg);
-}
-.badge[data-tone="warning"] {
-  background: var(--warning-bg);
-  color: var(--warning-fg);
-}
-.badge[data-tone="error"] {
-  background: var(--error-bg);
-  color: var(--error-fg);
-}
-</style>

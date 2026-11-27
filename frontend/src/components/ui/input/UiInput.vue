@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Input from "./Input.vue";
 const model = defineModel<string>({ required: true });
 withDefaults(defineProps<{ type?: "text" | "search" | "email"; invalid?: boolean }>(), {
   type: "text",
@@ -6,19 +7,10 @@ withDefaults(defineProps<{ type?: "text" | "search" | "email"; invalid?: boolean
 });
 </script>
 <template>
-  <input v-model="model" :type="type" :aria-invalid="invalid || undefined" class="field" />
+  <Input
+    :model-value="model"
+    :type="type"
+    :aria-invalid="invalid || undefined"
+    @update:model-value="model = String($event)"
+  />
 </template>
-<style scoped>
-.field {
-  width: 100%;
-  min-height: var(--field-height);
-  border: var(--border-thin) solid var(--input);
-  border-radius: var(--field-radius);
-  background: var(--card);
-  color: var(--foreground);
-  padding: var(--field-padding-y) var(--field-padding-x);
-}
-.field[aria-invalid="true"] {
-  border-color: var(--error-fg);
-}
-</style>

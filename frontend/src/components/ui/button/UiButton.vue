@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from "./Button.vue";
 withDefaults(
   defineProps<{
     variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
@@ -9,67 +10,12 @@ withDefaults(
   { variant: "primary", size: "md", type: "button", disabled: false },
 );
 </script>
-
 <template>
-  <button
+  <Button
+    :variant="variant === 'primary' ? 'default' : variant"
+    :size="size === 'md' ? 'default' : size"
     :type="type"
     :disabled="disabled"
-    class="button"
-    :class="[`button--${variant}`, `button--${size}`]"
-  >
-    <slot />
-  </button>
+    ><slot
+  /></Button>
 </template>
-
-<style scoped>
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--button-gap);
-  min-height: var(--button-height);
-  padding: var(--button-padding-y) var(--button-padding-x);
-  border: var(--border-thin) solid transparent;
-  border-radius: var(--button-radius);
-  font-weight: var(--weight-bold);
-  transition: background var(--duration-fast) var(--ease-standard);
-}
-.button--primary {
-  background: var(--primary);
-  color: var(--primary-foreground);
-}
-.button--primary:hover:not(:disabled) {
-  background: var(--primary-hover);
-}
-.button--secondary {
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-}
-.button--outline {
-  background: transparent;
-  color: var(--foreground);
-  border-color: currentColor;
-}
-.button--ghost {
-  background: transparent;
-  color: var(--foreground);
-}
-.button--destructive {
-  background: var(--error-bg);
-  color: var(--error-fg);
-}
-.button:not(.button--primary):hover:not(:disabled) {
-  box-shadow: inset 0 0 0 1px currentColor;
-}
-.button--sm {
-  font-size: var(--type-caption);
-}
-.button--lg {
-  padding-inline: var(--space-6);
-  font-size: var(--type-lead);
-  min-height: var(--button-height-lg);
-}
-.button:disabled {
-  opacity: var(--opacity-disabled);
-}
-</style>

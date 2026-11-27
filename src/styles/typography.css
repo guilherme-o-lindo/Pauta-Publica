@@ -1,0 +1,25 @@
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--line-tight);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+h1 {
+  font-size: var(--type-h1);
+}
+h2 {
+  font-size: var(--type-h2);
+}
+h3 {
+  font-size: var(--type-h3);
+}
+h4 {
+  font-size: var(--type-h4);
+}
+p {
+  margin: 0;
+}

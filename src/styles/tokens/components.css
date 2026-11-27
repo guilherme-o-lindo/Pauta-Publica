@@ -1,0 +1,17 @@
+:root {
+  --button-height: var(--control-min);
+  --button-height-lg: var(--control-lg);
+  --button-radius: var(--radius-md);
+  --button-gap: var(--space-2);
+  --button-padding-x: var(--space-4);
+  --button-padding-y: var(--space-2);
+  --card-radius: var(--radius-md);
+  --card-padding: var(--space-6);
+  --card-gap: var(--space-4);
+  --field-radius: var(--radius-sm);
+  --field-height: var(--control-min);
+  --field-padding-x: var(--space-3);
+  --field-padding-y: var(--space-2);
+  --badge-radius: var(--radius-sm);
+  --alert-radius: var(--radius-md);
+}

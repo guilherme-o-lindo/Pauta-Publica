@@ -1,3 +1,7 @@
 node_modules/
 dist/
 prototypes/
+storybook-static/
+
+playwright-report/
+test-results/

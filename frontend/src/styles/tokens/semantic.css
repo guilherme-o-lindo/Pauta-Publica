@@ -1,0 +1,37 @@
+:root {
+  color-scheme: light;
+  --background: var(--paper);
+  --foreground: var(--graphite);
+  --card: var(--white);
+  --card-foreground: var(--graphite);
+  --popover: var(--white);
+  --popover-foreground: var(--graphite);
+  --muted: var(--sand);
+  --muted-foreground: var(--neutral-700);
+  --border: var(--neutral-400);
+  --input: var(--neutral-600);
+  --primary: var(--graphite);
+  --primary-foreground: var(--white);
+  --primary-hover: var(--neutral-800);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--graphite);
+  --accent: var(--neutral-200);
+  --accent-foreground: var(--graphite);
+  --ring: var(--purple-focus);
+  --success: var(--green);
+  --success-bg: var(--green-light);
+  --success-fg: var(--green-dark);
+  --warning: var(--amber);
+  --warning-bg: var(--amber-light);
+  --warning-fg: var(--amber-dark);
+  --error: var(--coral);
+  --error-bg: var(--coral-light);
+  --error-fg: var(--coral-dark);
+  --info: var(--blue);
+  --info-bg: var(--blue-light);
+  --info-fg: var(--blue-dark);
+  --destructive: var(--error-fg);
+  --destructive-foreground: var(--white);
+  --radius: var(--radius-md);
+  --overlay-background: rgb(36 41 51 / var(--opacity-scrim));
+}

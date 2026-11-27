@@ -43,3 +43,7 @@ Primitives define valores brutos; semantic define pap?is; components define dime
 ## Layout e tipografia (fase 03)
 
 Use AppContainer para largura e margens, AppSection para se??es, Stack e Cluster para espa?amento recorrente, AppGrid para grid de 4/8/12 colunas ou cards adapt?veis. PageHeader define o h1 da p?gina; SectionHeader permite n?veis 2 a 4. Heading separa n?vel sem?ntico e apar?ncia. AppText oferece body, lead, caption e overline sem wrappers redundantes. AppLink ? um link HTML; AppProse ? destinado a conte?do editorial; AppBlockquote identifica cita??es. AspectRatio, ScrollArea e Separator usam CSS e HTML nativos. ScrollArea exige r?tulo e, no eixo vertical, altura limitada pelo consumidor. Use utilit?rios Tailwind diretamente para layouts pontuais.
+
+## Componentes compostos (fase 05)
+
+SearchInput usa v-model; FormField fornece id, describedBy, invalid e required por slot; DateRangePicker usa datas ISO e controles nativos. FilterBar, FilterPanel, ActiveFilters e SortControl comp?em filtros controlados pelo consumidor. DataTable ordena e pagina registros locais sem alterar os dados recebidos. Para grandes conjuntos, use pagina??o no servidor em uma fase posterior. CopyButton e ShareButton dependem das APIs do navegador e informam falhas. LoadingState, ErrorState, EmptyState, StatCard, DescriptionList, Timeline e ImageWithCaption comp?em os estados e conte?dos. Exemplos em Shared/Components no Storybook.

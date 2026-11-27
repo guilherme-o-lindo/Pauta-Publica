@@ -51,3 +51,7 @@ SearchInput usa v-model; FormField fornece id, describedBy, invalid e required p
 ## Marca e editorial (fase 06)
 
 Brasil plural: as cinco geometrias e cores regionais s?o preservadas. RegionalShape ? decorativo; RegionalSymbol e RegionBadge fornecem identifica??o textual. BrandLogo ? uma assinatura provis?ria, n?o uma aprova??o de logotipo. GeometricMosaic, BrandPattern e ColorStrip s?o elementos decorativos. EditorialHero permite selecionar o n?vel do t?tulo conforme a hierarquia da p?gina; EditorialCard, FeatureSection, EditorialCallout, EditorialQuote, GeometricImage e CallToAction comp?em conte?dos editoriais. Imagens devem ter texto alternativo apropriado e cr?ditos quando aplic?veis. Nenhuma cor regional representa posicionamento pol?tico. Cat?logo: Brand and Editorial/Overview.
+
+## Navega??o e layouts (fase 07)
+
+PublicLayout oferece SkipLink, AppHeader, uma regi?o main e AppFooter. DesktopNavigation e MobileNavigation recebem NavigationItem[]; current indica a p?gina ativa. GlobalSearch filtra itens locais sem acentos, sem API. EditorialLayout limita a largura de leitura; DashboardLayout inclui Sidebar; DetailLayout fornece slots breadcrumb, header e aside opcional. As p?ginas s?o respons?veis por seus t?tulos e destinos reais. Os exemplos usam ?ncoras do laborat?rio, sem rotas de dom?nio ou autentica??o. Storybook: Navigation and Layouts/Page structures.

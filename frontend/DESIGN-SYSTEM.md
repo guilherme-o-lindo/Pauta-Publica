@@ -55,3 +55,7 @@ Brasil plural: as cinco geometrias e cores regionais s?o preservadas. RegionalSh
 ## Navega??o e layouts (fase 07)
 
 PublicLayout oferece SkipLink, AppHeader, uma regi?o main e AppFooter. DesktopNavigation e MobileNavigation recebem NavigationItem[]; current indica a p?gina ativa. GlobalSearch filtra itens locais sem acentos, sem API. EditorialLayout limita a largura de leitura; DashboardLayout inclui Sidebar; DetailLayout fornece slots breadcrumb, header e aside opcional. As p?ginas s?o respons?veis por seus t?tulos e destinos reais. Os exemplos usam ?ncoras do laborat?rio, sem rotas de dom?nio ou autentica??o. Storybook: Navigation and Layouts/Page structures.
+
+## Visualiza??o de dados (fase 08)
+
+ECharts e Vue ECharts com SVG, importa??es modulares e carregamento ass?ncrono do cat?logo. ChartData preserva valores nulos; ChartContainer exige descri??o e fonte, oferecendo tabela de dados. Gr?ficos de rosca representam valores n?o negativos da primeira s?rie. Mapas recebem geometria e identifica??o da fonte fornecidas pelo consumidor; sem geometria, mostram alternativa tabular, sem contornos inventados. Dados do cat?logo s?o fict?cios. A inclus?o de malhas oficiais e a auditoria de acessibilidade visual permanecem pendentes.

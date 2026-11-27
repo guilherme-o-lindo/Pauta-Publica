@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import { defineAsyncComponent } from "vue";
 import BrandPreview from "../components/brand/BrandPreview.vue";
 import SharedPreview from "../components/data-display/SharedPreview.vue";
 import LayoutPreview from "../components/layout/LayoutPreview.vue";
@@ -17,11 +18,15 @@ import RegionalShape from "../components/brand/RegionalShape.vue";
 import TokenPreview from "../components/brand/TokenPreview.vue";
 import BillCard from "../features/bills/components/BillCard.vue";
 
+const VisualizationPreview = defineAsyncComponent(
+  () => import("../components/data-visualization/VisualizationPreview.vue"),
+);
 const navigation: NavigationItem[] = [
   { label: "Fundamentos", href: "#foundations" },
   { label: "Componentes", href: "#shared" },
   { label: "Marca", href: "#brand" },
   { label: "Tokens", href: "#tokens" },
+  { label: "Visualiza??o", href: "#visualization" },
   { label: "Exemplos", href: "#examples" },
 ];
 const regions = [
@@ -68,6 +73,10 @@ const results = computed(() =>
       <h2>Marca e editorial</h2>
       <BrandPreview />
     </AppSection>
+    <AppSection id="visualization"
+      ><h2>Visualiza??o de dados</h2>
+      <VisualizationPreview
+    /></AppSection>
     <AppSection id="tokens">
       <h2>Tokens</h2>
       <TokenPreview />

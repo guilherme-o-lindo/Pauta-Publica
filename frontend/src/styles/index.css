@@ -6,6 +6,7 @@
 @import "./tokens/primitives.css";
 @import "./tokens/semantic.css";
 @import "./tokens/components.css";
+@import "./tokens/visualization.css";
 @import "./theme.css";
 @import "./base.css" layer(base);
 @import "./typography.css" layer(base);

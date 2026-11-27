@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import LayoutPreview from "../components/layout/LayoutPreview.vue";
+import PageHeader from "../components/layout/PageHeader.vue";
 import AppContainer from "../components/layout/AppContainer.vue";
 import AppSection from "../components/layout/AppSection.vue";
 import UiButton from "../components/ui/button/UiButton.vue";
@@ -40,12 +42,16 @@ const results = computed(() =>
 <template>
   <a class="pp-skip-link" href="#main">Ir para o conteúdo</a>
   <AppContainer>
-    <header class="intro">
-      <p class="pp-muted">Pauta Pública / Laboratório</p>
-      <h1>Design system</h1>
-      <p>Política simples. Informação para todos.</p>
-    </header>
+    <PageHeader
+      title="Design system"
+      eyebrow="Pauta P?blica / Laborat?rio"
+      description="Pol?tica simples. Informa??o para todos."
+    />
     <main id="main" tabindex="-1">
+      <AppSection>
+        <h2>Layout e tipografia</h2>
+        <LayoutPreview />
+      </AppSection>
       <AppSection>
         <h2>Tokens</h2>
         <TokenPreview />

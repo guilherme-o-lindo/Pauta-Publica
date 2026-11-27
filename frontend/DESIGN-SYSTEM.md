@@ -47,3 +47,7 @@ Use AppContainer para largura e margens, AppSection para se??es, Stack e Cluster
 ## Componentes compostos (fase 05)
 
 SearchInput usa v-model; FormField fornece id, describedBy, invalid e required por slot; DateRangePicker usa datas ISO e controles nativos. FilterBar, FilterPanel, ActiveFilters e SortControl comp?em filtros controlados pelo consumidor. DataTable ordena e pagina registros locais sem alterar os dados recebidos. Para grandes conjuntos, use pagina??o no servidor em uma fase posterior. CopyButton e ShareButton dependem das APIs do navegador e informam falhas. LoadingState, ErrorState, EmptyState, StatCard, DescriptionList, Timeline e ImageWithCaption comp?em os estados e conte?dos. Exemplos em Shared/Components no Storybook.
+
+## Marca e editorial (fase 06)
+
+Brasil plural: as cinco geometrias e cores regionais s?o preservadas. RegionalShape ? decorativo; RegionalSymbol e RegionBadge fornecem identifica??o textual. BrandLogo ? uma assinatura provis?ria, n?o uma aprova??o de logotipo. GeometricMosaic, BrandPattern e ColorStrip s?o elementos decorativos. EditorialHero permite selecionar o n?vel do t?tulo conforme a hierarquia da p?gina; EditorialCard, FeatureSection, EditorialCallout, EditorialQuote, GeometricImage e CallToAction comp?em conte?dos editoriais. Imagens devem ter texto alternativo apropriado e cr?ditos quando aplic?veis. Nenhuma cor regional representa posicionamento pol?tico. Cat?logo: Brand and Editorial/Overview.

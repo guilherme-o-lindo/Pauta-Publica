@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import BrandPreview from "../components/brand/BrandPreview.vue";
 import SharedPreview from "../components/data-display/SharedPreview.vue";
 import LayoutPreview from "../components/layout/LayoutPreview.vue";
 import PageHeader from "../components/layout/PageHeader.vue";
@@ -56,6 +57,10 @@ const results = computed(() =>
       <AppSection>
         <h2>Componentes compostos</h2>
         <SharedPreview />
+      </AppSection>
+      <AppSection>
+        <h2>Marca e editorial</h2>
+        <BrandPreview />
       </AppSection>
       <AppSection>
         <h2>Tokens</h2>

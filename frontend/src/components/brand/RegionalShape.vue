@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
-const props = defineProps<{
-  region: "north" | "northeast" | "center-west" | "southeast" | "south";
-}>();
+import type { Region } from "./regions";
+const props = defineProps<{ region: Region }>();
 const paths = {
   north: "M0 100 V50 A50 50 0 0 1 50 0 H100 V100Z",
   northeast: "M0 0 H50 A50 50 0 0 1 100 50 V100 H0Z",

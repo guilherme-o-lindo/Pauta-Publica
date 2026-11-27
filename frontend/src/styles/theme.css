@@ -1,4 +1,4 @@
-/* Tailwind v4 bridge. Import after @import "tailwindcss" once the Vite plugin is installed. */
+/* Tailwind v4 semantic token bridge. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

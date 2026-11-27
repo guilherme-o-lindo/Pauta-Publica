@@ -26,6 +26,7 @@ jobs:
     if: >-
       github.ref_name == 'develop' || github.ref_name == 'main' ||
       startsWith(github.ref_name, 'release/') ||
+      github.ref_name == 'feature/frontend/design-system' ||
       (github.event_name == 'pull_request' && (github.base_ref == 'develop' || github.base_ref == 'main'))
     runs-on: ubuntu-latest
     defaults:
@@ -35,7 +36,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 12.18.0
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
@@ -55,6 +56,9 @@ jobs:
         run: pnpm build
       - name: Tests
         run: pnpm exec vitest run --passWithNoTests
+      - name: Build Storybook
+        if: github.ref_name == 'feature/frontend/design-system'
+        run: pnpm build:storybook
 
   backend-monorepo:
     name: Backend (monorepo)
@@ -95,7 +99,7 @@ jobs:
     name: Frontend (isolated branch)
     if: >-
       github.ref_name == 'frontend' ||
-      startsWith(github.ref_name, 'feature/frontend/') ||
+      (startsWith(github.ref_name, 'feature/frontend/') && github.ref_name != 'feature/frontend/design-system') ||
       (github.event_name == 'pull_request' && github.base_ref == 'frontend')
     runs-on: ubuntu-latest
     steps:

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ title: string; description: string }>()
+defineProps<{ title: string; description: string }>();
 </script>
 <template>
   <div class="empty">
@@ -9,5 +9,13 @@ defineProps<{ title: string; description: string }>()
   </div>
 </template>
 <style scoped>
-.empty { text-align: center; display: grid; justify-items: center; gap: var(--space-3); padding: var(--space-8); border: 1px dashed var(--border); border-radius: var(--radius-md); }
+.empty {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+}
 </style>

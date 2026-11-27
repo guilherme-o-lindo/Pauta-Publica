@@ -12,7 +12,7 @@ withDefaults(defineProps<{ tone?: "success" | "warning" | "error" | "info"; titl
 <style scoped>
 .alert {
   padding: var(--space-4);
-  border-radius: var(--radius-md);
+  border-radius: var(--alert-radius);
   border-inline-start: 4px solid;
   display: grid;
   gap: var(--space-1);

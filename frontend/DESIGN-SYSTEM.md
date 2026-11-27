@@ -35,3 +35,7 @@ A migracao de primitivos para shadcn-vue/CVA ocorre na fase 04; revisar imports 
 ## Backlog
 
 Navigation, formulários complexos, overlays acessíveis, tabelas, gráficos, mapas, demais features, documentação de variantes, testes automatizados e auditoria WCAG. Adicionar conforme os casos reais, aproveitando shadcn-vue para interações complexas. Não há integração com APIs ou dados reais nesta etapa.
+
+## Tokens (fase 02)
+
+Primitives define valores brutos; semantic define pap?is; components define dimens?es e espa?amentos de controles. theme.css exp?e os pap?is ao Tailwind v4. Use bg-background, text-foreground, bg-success-bg, text-success-fg, rounded-ui-md, shadow-ui-overlay e font-heading. A escala de espa?amento ? de 0.25rem; raios expl?citos ui-sm/md/lg s?o 6/12/20px. Breakpoints em theme.css s?o constantes de compila??o (40/48/64/80/96rem). N?o duplicar esses valores em runtime. Use tokens de cor de texto sobre fundos suaves; cores vivas s?o decorativas e n?o significam avalia??o pol?tica. Os testes verificam contraste de pares selecionados, n?o conformidade WCAG integral. Modo claro apenas nesta fase.

@@ -13,9 +13,9 @@ withDefaults(defineProps<{ tone?: "neutral" | "info" | "success" | "warning" | "
   padding: var(--space-1) var(--space-2);
   background: var(--muted);
   color: var(--foreground);
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 700;
+  border-radius: var(--badge-radius);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-bold);
 }
 .badge[data-tone="info"] {
   background: var(--info-bg);

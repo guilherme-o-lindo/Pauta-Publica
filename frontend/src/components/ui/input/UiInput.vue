@@ -12,11 +12,11 @@ withDefaults(defineProps<{ type?: "text" | "search" | "email"; invalid?: boolean
 .field {
   width: 100%;
   min-height: var(--field-height);
-  border: 1px solid var(--input);
+  border: var(--border-thin) solid var(--input);
   border-radius: var(--field-radius);
   background: var(--card);
   color: var(--foreground);
-  padding: var(--space-2) var(--space-3);
+  padding: var(--field-padding-y) var(--field-padding-x);
 }
 .field[aria-invalid="true"] {
   border-color: var(--error-fg);

@@ -5,11 +5,11 @@
 <style scoped>
 .card {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--card-gap);
   background: var(--card);
   color: var(--card-foreground);
   padding: var(--card-padding);
-  border: 1px solid var(--border);
+  border: var(--border-thin) solid var(--border);
   border-radius: var(--card-radius);
   min-width: 0;
 }

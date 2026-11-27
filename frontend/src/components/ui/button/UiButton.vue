@@ -26,12 +26,12 @@ withDefaults(
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
+  gap: var(--button-gap);
   min-height: var(--button-height);
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid transparent;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border: var(--border-thin) solid transparent;
   border-radius: var(--button-radius);
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   transition: background var(--duration-fast) var(--ease-standard);
 }
 .button--primary {
@@ -62,13 +62,14 @@ withDefaults(
   box-shadow: inset 0 0 0 1px currentColor;
 }
 .button--sm {
-  font-size: 0.875rem;
+  font-size: var(--type-caption);
 }
 .button--lg {
   padding-inline: var(--space-6);
-  font-size: 1.125rem;
+  font-size: var(--type-lead);
+  min-height: var(--button-height-lg);
 }
 .button:disabled {
-  opacity: 0.5;
+  opacity: var(--opacity-disabled);
 }
 </style>

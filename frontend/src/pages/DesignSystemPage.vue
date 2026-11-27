@@ -9,6 +9,7 @@ import AppAlert from "../components/feedback/AppAlert.vue";
 import EmptyState from "../components/feedback/EmptyState.vue";
 import StatCard from "../components/data-display/StatCard.vue";
 import RegionalShape from "../components/brand/RegionalShape.vue";
+import TokenPreview from "../components/brand/TokenPreview.vue";
 import BillCard from "../features/bills/components/BillCard.vue";
 
 const regions = [
@@ -45,6 +46,10 @@ const results = computed(() =>
       <p>Política simples. Informação para todos.</p>
     </header>
     <main id="main" tabindex="-1">
+      <AppSection>
+        <h2>Tokens</h2>
+        <TokenPreview />
+      </AppSection>
       <AppSection>
         <h2>Brasil plural</h2>
         <div class="regions">

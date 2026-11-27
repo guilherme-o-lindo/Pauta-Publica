@@ -1,0 +1,8 @@
+:root {
+  --button-height: var(--control-min);
+  --button-radius: var(--radius-md);
+  --card-radius: var(--radius-md);
+  --card-padding: var(--space-6);
+  --field-radius: var(--radius-sm);
+  --field-height: var(--control-min);
+}

@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import VChart from "vue-echarts";
 import "../../../lib/visualization/engine";
-import { chartOptions } from "../../../lib/visualization/options";
+import { chartOptions, donutItems, validNumber } from "../../../lib/visualization/options";
 import type { ChartData, ChartKind, ChartMetadata } from "../../../types/visualization";
 import ChartContainer from "../primitives/ChartContainer.vue";
 import ChartLegend from "../primitives/ChartLegend.vue";
@@ -15,8 +15,15 @@ const props = defineProps<{
 const option = computed(() => chartOptions(props.data, props.kind));
 const available = computed(() =>
   props.kind === "donut"
-    ? props.data.series[0]?.values.some((v) => v !== null && Number.isFinite(v) && v > 0)
-    : props.data.series.some((s) => s.values.some((v) => v !== null && Number.isFinite(v))),
+    ? donutItems(props.data).some((v) => (v.value ?? 0) > 0)
+    : props.data.series.some((s) =>
+        props.data.categories.some((_, i) => validNumber(s.values[i]) !== null),
+      ),
+);
+const labels = computed(() =>
+  props.kind === "donut"
+    ? donutItems(props.data).map((item) => item.name)
+    : props.data.series.map((s) => s.name),
 );
 </script>
 <template>
@@ -26,9 +33,9 @@ const available = computed(() =>
         :option="option"
         :init-options="{ renderer: 'svg' }"
         autoresize
-        class="h-72 w-full"
-        aria-hidden="true" /><ChartLegend
-        :labels="kind === 'donut' ? data.categories : data.series.map((s) => s.name)"
+        class="w-full min-w-0"
+        style="height: 288px; min-height: 288px"
+        aria-hidden="true" /><ChartLegend :labels="labels"
     /></template>
     <p v-else role="status">Dados insuficientes para a visualização.</p></ChartContainer
   >

@@ -9,7 +9,9 @@ import {
   MetricComparison,
   MetricGroup,
   BrazilMap,
+  RegionalMap,
 } from "./index";
+import { syntheticGeometry } from "./maps/syntheticGeometry";
 import type { ChartData, ChartMetadata } from "../../types/visualization";
 const metadata: ChartMetadata = {
   source: "Dados fictícios",
@@ -58,6 +60,31 @@ const donut: ChartData = {
           { name: 'Pará', value: null },
         ]"
         :metadata="metadata"
+      />
+      <BrazilMap
+        title="Teste de geometria sintética (não territorial)"
+        :geometry="syntheticGeometry"
+        geometry-source="Fixture sintética A/B/C"
+        :values="[
+          { name: 'A', value: 0 },
+          { name: 'B', value: 20 },
+          { name: 'C', value: null },
+        ]"
+        :metadata="metadata"
+      />
+      <RegionalMap
+        region="northeast"
+        :geometry="syntheticGeometry"
+        geometry-source="Fixture sintética (não representa o Nordeste)"
+        :values="[
+          { name: 'A', value: 0 },
+          { name: 'B', value: 20 },
+          { name: 'C', value: null },
+        ]"
+        :metadata="{
+          ...metadata,
+          description: 'Teste de renderização; formas sintéticas, sem representação territorial.',
+        }"
       />
     </div>
   </div>

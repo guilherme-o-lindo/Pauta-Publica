@@ -27,8 +27,8 @@ const navigation: NavigationItem[] = [
   { label: "Componentes", href: "#shared" },
   { label: "Marca", href: "#brand" },
   { label: "Tokens", href: "#tokens" },
-  { label: "Dom?nios", href: "#domain" },
-  { label: "Visualiza??o", href: "#visualization" },
+  { label: "Domínios", href: "#domain" },
+  { label: "Visualização", href: "#visualization" },
   { label: "Exemplos", href: "#examples" },
 ];
 const regions = [
@@ -60,8 +60,8 @@ const results = computed(() =>
   <PublicLayout :items="navigation" home-href="#main">
     <PageHeader
       title="Design system"
-      eyebrow="Pauta P?blica / Laborat?rio"
-      description="Pol?tica simples. Informa??o para todos."
+      eyebrow="Pauta Pública / Laboratório"
+      description="Política simples. Informação para todos."
     />
     <AppSection id="foundations">
       <h2>Layout e tipografia</h2>

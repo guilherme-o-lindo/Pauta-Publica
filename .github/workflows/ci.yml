@@ -59,6 +59,12 @@ jobs:
       - name: Build Storybook
         if: github.ref_name == 'feature/frontend/design-system'
         run: pnpm build:storybook
+      - name: Install Chromium
+        if: github.ref_name == 'feature/frontend/design-system'
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Browser tests
+        if: github.ref_name == 'feature/frontend/design-system'
+        run: pnpm test:e2e
 
   backend-monorepo:
     name: Backend (monorepo)

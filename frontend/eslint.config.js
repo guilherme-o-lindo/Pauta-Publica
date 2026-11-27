@@ -19,5 +19,9 @@ export default tseslint.config(
       },
     },
   },
+  {
+    files: ["**/*.mjs", "playwright.config.ts"],
+    languageOptions: { globals: { process: "readonly" } },
+  },
   prettier,
 );

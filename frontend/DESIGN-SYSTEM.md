@@ -63,3 +63,7 @@ ECharts e Vue ECharts com SVG, importa??es modulares e carregamento ass?ncrono d
 ## Componentes de dom?nio (fase 09)
 
 Os sete dom?nios possuem contratos TypeScript pr?prios. A apresenta??o recebe dados por props e emite a??es; n?o realiza consultas ? API. Partidos e resultados usam estilos neutros. Valores monet?rios s?o formatados em BRL, com aus?ncia distinta de zero. Favoritos s?o controlados pelo consumidor, sem persist?ncia nesta etapa. O cat?logo Domain/Overview usa apenas dados fict?cios e demonstra intera??es locais.
+
+## Consolidação (fase 10)
+
+Documentação em [docs/design-system](docs/design-system/). Testes unitários: pnpm test. Testes de navegador: pnpm build e pnpm test:e2e. Regressão visual local: pnpm test:visual. O CI executa os testes funcionais Chromium; snapshots Windows exigem revisão humana e baselines Linux independentes. Os gráficos possuem dimensões explícitas e redimensionamento responsivo; ECharts e ZRender são separados em chunks. Mapas demonstram geometria sintética, sem dados territoriais reais. APIs, backend e persistência remota estão fora do escopo. A auditoria automatizada não certifica WCAG.

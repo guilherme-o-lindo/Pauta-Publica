@@ -21,11 +21,13 @@ import BillCard from "../features/bills/components/BillCard.vue";
 const VisualizationPreview = defineAsyncComponent(
   () => import("../components/data-visualization/VisualizationPreview.vue"),
 );
+const DomainPreview = defineAsyncComponent(() => import("../features/DomainPreview.vue"));
 const navigation: NavigationItem[] = [
   { label: "Fundamentos", href: "#foundations" },
   { label: "Componentes", href: "#shared" },
   { label: "Marca", href: "#brand" },
   { label: "Tokens", href: "#tokens" },
+  { label: "Dom?nios", href: "#domain" },
   { label: "Visualiza??o", href: "#visualization" },
   { label: "Exemplos", href: "#examples" },
 ];
@@ -76,6 +78,10 @@ const results = computed(() =>
     <AppSection id="visualization"
       ><h2>Visualiza??o de dados</h2>
       <VisualizationPreview
+    /></AppSection>
+    <AppSection id="domain"
+      ><h2>Componentes de dom?nio</h2>
+      <DomainPreview
     /></AppSection>
     <AppSection id="tokens">
       <h2>Tokens</h2>

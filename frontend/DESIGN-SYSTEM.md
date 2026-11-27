@@ -59,3 +59,7 @@ PublicLayout oferece SkipLink, AppHeader, uma regi?o main e AppFooter. DesktopNa
 ## Visualiza??o de dados (fase 08)
 
 ECharts e Vue ECharts com SVG, importa??es modulares e carregamento ass?ncrono do cat?logo. ChartData preserva valores nulos; ChartContainer exige descri??o e fonte, oferecendo tabela de dados. Gr?ficos de rosca representam valores n?o negativos da primeira s?rie. Mapas recebem geometria e identifica??o da fonte fornecidas pelo consumidor; sem geometria, mostram alternativa tabular, sem contornos inventados. Dados do cat?logo s?o fict?cios. A inclus?o de malhas oficiais e a auditoria de acessibilidade visual permanecem pendentes.
+
+## Componentes de dom?nio (fase 09)
+
+Os sete dom?nios possuem contratos TypeScript pr?prios. A apresenta??o recebe dados por props e emite a??es; n?o realiza consultas ? API. Partidos e resultados usam estilos neutros. Valores monet?rios s?o formatados em BRL, com aus?ncia distinta de zero. Favoritos s?o controlados pelo consumidor, sem persist?ncia nesta etapa. O cat?logo Domain/Overview usa apenas dados fict?cios e demonstra intera??es locais.
